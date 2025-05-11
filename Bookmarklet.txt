@@ -1,0 +1,118 @@
+javascript:(function(){
+  const replacements = {
+    'dog': '🐶',
+    'cat': '🐱',
+    'horse': '🐴',
+    'duck': '🦆',
+    'cow': '🐄',
+    'monkey', '🐒',
+    'gorrila', '🦍',
+    'poodle', '🐩',
+    'wolf', '🐺	',
+    'fox', '🦊',
+    'racoon', '🦝',
+    'lion', '🦁',
+    'tiger', '🐯',
+    'unicorn', '🦄',
+    'zebra', '🦓',
+    'deer', '🦌',
+    'cow', '🐮',
+    'ox', '🐂',
+    'water buffalo', '🐃',
+    'pig', '🐷',
+    'boar', '🐗',
+    'ram', '🐏',
+    'ewe', '🐑',
+    'goat', '🐐',
+    'camel', '🐫',
+    'llama', '🦙',
+    'girrafe', '🦒',
+    'elephant', '🐘',
+    'rhinoceros', '	🦏',
+    'rhino', '🦏',
+    'hippopotamus', '🦛',
+    'mouse', '🐁',
+    'rat', '🐀',
+    'hamster', '🐹',
+    'rabbit', '🐰',
+    'hare', '🐰',
+    'chipmunk', '🐿',
+    'hedgehog', '🦔',
+    'bear', '🐻',
+    'koala', '🐨',
+    'panda', '🐼',
+    'kangaroo', '🦘',
+    'badger', '🦡',
+    'turkey', '🦃',
+    'chicken', '🐔	',
+    'rooster', '🐓',
+    'bird', '🐦',
+    'dove', '🕊',
+    'eagle', '🦅', 
+    'chick', '🐤',
+    'penguin', '🐧',
+    'duck', '🦆',
+    'swan', '🦢',
+    'owl', '🦉',
+    'peacock', '🦚',
+    'parrot', '🦜',
+    'frog', '🐸', 
+    'corcodile', '🐊',
+    'turtle', '🐢',
+    'lizard', '🦎',
+    'snake', '🐍',
+    'dragon', '🐉',
+    'dinosaur', '🦕',
+    'rex', '🦖',
+    'whale', '🐳',
+    'dolphin', '🐬',
+    'fish', '🐠',
+    'shark', '🦈', 
+    'octopus', '🐙',
+    'shell', '🐚',
+    'snail', '🐌',
+    'butterfly', '🦋',
+    'catterpillar', '🐛',
+    'ant', '🐜', 
+    'bee', '🐝', 
+    'cricket', '🦗',
+    'spider', '🕷',
+    'scorpion', '🦂',
+    'mosquito', '🦟',
+    'microbe', '🦠',
+    'rose', '🌹',
+    'tulip', '🌷',
+    'flower', '🌸'
+    'smile', '😀',
+    'strong', '💪',
+    'leg', '🦵',
+    'ear', '👂',
+    'smart', '
+  };
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+
+  while(walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  nodes.forEach(node => {
+    node.originalText = node.nodeValue;
+    for (let word in replacements) {
+      const regex = new RegExp('\\b' + word + '\\b', 'gi');
+      node.nodeValue = node.nodeValue.replace(regex, '💥');
+    }
+  });
+
+  setTimeout(() => {
+    nodes.forEach(node => {
+      let text = node.originalText;
+      for (let word in replacements) {
+        const regex = new RegExp('\\b' + word + '\\b', 'gi');
+        text = text.replace(regex, replacements[word]);
+      }
+      node.nodeValue = text;
+    });
+  }, 1000);
+})();
